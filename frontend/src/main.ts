@@ -1,6 +1,5 @@
-// src/main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';  // Importamos el componente principal
+import { AppComponent } from './app/app.component';
 
-bootstrapApplication(AppComponent)  // Arrancamos la aplicación con AppComponent
-    .catch(err => console.error(err));  // Manejamos errores si los hay
+bootstrapApplication(AppComponent)
+    .catch(err => console.error(err));

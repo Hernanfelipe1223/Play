@@ -1,14 +1,25 @@
-// src/app/app.component.ts
 import { Component } from '@angular/core';
-import { MainComponent } from './main/main.component';  // Importa el MainComponent
+import { PlaylistService } from './playlist.service'; // Si estás usando el PlaylistService
 
 @Component({
-  selector: 'app-root',  // Esta es la etiqueta que se usará en el archivo index.html
-  standalone: true,  // Marcamos este componente como standalone
-  template: `<app-main></app-main>`,  // Usamos el componente MainComponent en el template
-  styleUrls: ['./app.component.css'],
-  imports: [MainComponent]  // Importamos el MainComponent para que sea usado en este componente
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // Este componente solo sirve para alojar el MainComponent en su template
+  title = 'Mi Aplicación Angular';
+  playlists: any[] = []; // Debes declarar playlists como un array vacío o el tipo adecuado
+
+  constructor(private playlistService: PlaylistService) {}
+
+  ngOnInit() {
+    this.playlistService.getPlaylists().subscribe(
+        (data) => {
+          this.playlists = data;  // Asegúrate de que 'data' es un array o lo que esperas
+        },
+        (error) => {
+          console.error(error); // Maneja los errores
+        }
+    );
+  }
 }
